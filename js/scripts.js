@@ -78,7 +78,7 @@ var pokemonRepository = (function() {    //Start of IIFE
 
      var $titleElement = $('<h1>title</h1>');
 
-     var $contentElement = $('<p>'Height: ' + text</p>');
+     var $contentElement = $('<p> Height: ' + text'</p>');
 
      var $imageElement = $('img class=myImage');
      imageElement.src = image;
