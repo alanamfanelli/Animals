@@ -61,32 +61,27 @@ var pokemonRepository = (function() {    //Start of IIFE
   }
 
   //Funtion to create modal
-    var $modalContainer = document.querySelector('#modal-container');
+    var $modalContainer = $('#modal-container');
     function showModal(title, text, image) {
-
-     $modalContainer.classList.add('is-visible');
+      $modalContainer.addClass('is-visible');
 
      // Clear all existing modal content
      $modalContainer.innerHTML = '';
 
-     var modal = document.createElement('div');
-     modal.classList.add('modal');
+     var $modal = $('<div class="modal"></div>');
 
      // Add the new modal content: Name, height, and image
-     var closeButtonElement = document.createElement('button');
-     closeButtonElement.classList.add('modal-close');
-     closeButtonElement.innerText = 'Close';
-     closeButtonElement.addEventListener('click', hideModal);
+     var $closeButtonElement = $('<button class="modal-close">Close</button>');
+     $('closeButtonElement').on('click', function (hideModal){
+       $modalContainer.classList.remove('is-visible');
+      });
 
-     var titleElement = document.createElement('h1');
-     titleElement.innerText = title;
+     var $titleElement = $('<h1>title</h1>');
 
-     var contentElement = document.createElement('p');
-     contentElement.innerText = 'Height: ' + text;
+     var $contentElement = $('<p>'Height: ' + text</p>');
 
-     var imageElement = document.createElement('img');
+     var $imageElement = $('img class=myImage');
      imageElement.src = image;
-     imageElement.classList.add('myImage');
 
      modal.appendChild(closeButtonElement);
      modal.appendChild(titleElement);
