@@ -67,7 +67,7 @@ var pokemonRepository = (function () { // Start of IIFE
 
     // Add the new modal content: Name, height, and image
     const $closeButtonElement = $('<button class="modal-close">Close</button>');
-    $('closeButtonElement').on('click', (hideModal) => {
+    $('closeButtonElement').on('click') => {
       $modalContainer.classList.remove('is-visible');
     });
 
@@ -75,7 +75,7 @@ var pokemonRepository = (function () { // Start of IIFE
 
     const $contentElement = $(`<p> Height: ${text}</p>`);
 
-    const $imageElement = $('img class=myImage');
+    const $imageElement = $('<img class=myImage></img>');
     imageElement.src = image;
 
     modal.appendChild(closeButtonElement);
