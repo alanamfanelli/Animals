@@ -78,11 +78,11 @@ var pokemonRepository = (function () { // Start of IIFE
     const $imageElement = $('<img class=myImage></img>');
     imageElement.src = image;
 
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modal.appendChild(imageElement);
-    $modalContainer.appendChild(modal);
+    modal.appendChild($closeButtonElement);
+    modal.appendChild($titleElement);
+    modal.appendChild($contentElement);
+    modal.appendChild($imageElement);
+    $modalContainer.appendChild($modal);
 
     $modalContainer.classList.add('is-visible');
   }
