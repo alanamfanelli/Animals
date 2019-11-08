@@ -58,18 +58,18 @@ var pokemonRepository = (function () { // Start of IIFE
   // Funtion to create modal
   const modalContainer = $('#modal-container');
   function showModal(title, text, image) {
-    $modalContainer.addClass('is-visible');
+    modalContainer.addClass('is-visible');
 
     // Clear all existing modal content
-    $modalContainer.innerHTML = '';
+    modalContainer.innerHTML = '';
 
     const modal = $('<div class="modal"></div>');
 
     // Add the new modal content: Name, height, and image
     const closeButtonElement = $('<button class="modal-close">Close</button>');
     $('closeButtonElement').on('click', () => {
-        modalContainer.classList.remove('is-visible');
-      });
+      modalContainer.classList.remove('is-visible');
+    });
 
     const titleElement = $('<h1>title</h1>');
 
@@ -83,16 +83,14 @@ var pokemonRepository = (function () { // Start of IIFE
     modal.append($contentElement);
     modal.append($imageElement);
     modalContainer.append($modal);
-
-    modalContainer.classList.add('is-visible');
   }
 
   function hideModal() {
-    $modalContainer.classList.remove('is-visible');
+    modalContainer.classList.remove('is-visible');
   }
 
   function showDetails(item) {
-    pokemonRepository.loadDetails(item).then() => {
+    pokemonRepository.loadDetails(item).then(() => {
       showModal(item.name, item.height, item.imageUrl);
     });
   }
