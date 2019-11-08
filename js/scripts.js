@@ -56,35 +56,35 @@ var pokemonRepository = (function () { // Start of IIFE
   }
 
   // Funtion to create modal
-  const $modalContainer = $('#modal-container');
+  const modalContainer = $('#modal-container');
   function showModal(title, text, image) {
     $modalContainer.addClass('is-visible');
 
     // Clear all existing modal content
     $modalContainer.innerHTML = '';
 
-    const $modal = $('<div class="modal"></div>');
+    const modal = $('<div class="modal"></div>');
 
     // Add the new modal content: Name, height, and image
-    const $closeButtonElement = $('<button class="modal-close">Close</button>');
-    $('closeButtonElement').on('click') => {
-      $modalContainer.classList.remove('is-visible');
-    });
+    const closeButtonElement = $('<button class="modal-close">Close</button>');
+    $('closeButtonElement').on('click', () => {
+        modalContainer.classList.remove('is-visible');
+      });
 
-    const $titleElement = $('<h1>title</h1>');
+    const titleElement = $('<h1>title</h1>');
 
-    const $contentElement = $(`<p> Height: ${text}</p>`);
+    const contentElement = $(`<p> Height: ${text}</p>`);
 
-    const $imageElement = $('<img class=myImage></img>');
-    imageElement.src = image;
+    const imageElement = $('<img class=myImage></img>');
+    $imageElement.src = image;
 
-    modal.appendChild($closeButtonElement);
-    modal.appendChild($titleElement);
-    modal.appendChild($contentElement);
-    modal.appendChild($imageElement);
-    $modalContainer.appendChild($modal);
+    modal.append($closeButtonElement);
+    modal.append($titleElement);
+    modal.append($contentElement);
+    modal.append($imageElement);
+    modalContainer.append($modal);
 
-    $modalContainer.classList.add('is-visible');
+    modalContainer.classList.add('is-visible');
   }
 
   function hideModal() {
@@ -92,7 +92,7 @@ var pokemonRepository = (function () { // Start of IIFE
   }
 
   function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(() => {
+    pokemonRepository.loadDetails(item).then() => {
       showModal(item.name, item.height, item.imageUrl);
     });
   }
