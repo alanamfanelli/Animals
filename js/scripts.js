@@ -66,27 +66,26 @@ var pokemonRepository = (function () { // Start of IIFE
     const modal = $('<div class="modal"></div>');
 
     // Add the new modal content: Name, height, and image
-    const closeButtonElement = $('<button class="modal-close">Close</button>');
-    $('closeButtonElement').on('click', () => {
-      modalContainer.classList.remove('is-visible');
-    });
+    const closeButtonElement = $('<button class="modal-close" id="closeButton">Close</button>');
 
-    const titleElement = $('<h1>title</h1>');
+
+    const titleElement = $(`<h1>${title}</h1>`);
 
     const contentElement = $(`<p> Height: ${text}</p>`);
 
-    const imageElement = $('<img class=myImage></img>');
-    $imageElement.src = image;
+    const imageElement = $('<img class=myImage></img>').attr('src', image);
 
-    modal.append($closeButtonElement);
-    modal.append($titleElement);
-    modal.append($contentElement);
-    modal.append($imageElement);
-    modalContainer.append($modal);
+    modalContainer.append(modal);
+    modal.append(closeButtonElement);
+    modal.append(titleElement);
+    modal.append(contentElement);
+    modal.append(imageElement);
+    closeButtonElement.click(hideModal);
   }
 
   function hideModal() {
-    modalContainer.classList.remove('is-visible');
+    modalContainer.removeClass('is-visible');
+    modalContainer.empty();
   }
 
   function showDetails(item) {
