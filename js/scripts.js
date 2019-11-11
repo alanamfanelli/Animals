@@ -21,7 +21,7 @@ var pokemonRepository = (function () { // Start of IIFE
   function addListItem(pokemon) {
     const $listItem = $('<li></li>');
     $pokemonList.append($listItem);
-    const $button = $(`<button type="button" id="pokemon-button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModalCenter">${pokemon.name}</button>`);
+    const $button = $(`<button type="button" id="pokemon-button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">${pokemon.name}</button>`);
     $listItem.append($button);
     $button.on('click', () => {
       showDetails(pokemon);
@@ -66,7 +66,7 @@ var pokemonRepository = (function () { // Start of IIFE
     const modal = $('<div class="modal"></div>');
 
     // Add the new modal content: Name, height, and image
-    const closeButtonElement = $('<button class="modal-close" id="closeButton">Close</button>');
+    const closeButtonElement = $('<button class="modal-close btn-danger" id="closeButton">Close</button>');
 
 
     const titleElement = $(`<h1>${title}</h1>`);
