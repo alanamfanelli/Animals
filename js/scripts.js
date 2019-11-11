@@ -1,4 +1,4 @@
-var pokemonRepository = (function () { // Start of IIFE
+const pokemonRepository = (function () { // Start of IIFE
   const repository = [];
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   const $pokemonList = $('ul');
@@ -15,17 +15,6 @@ var pokemonRepository = (function () { // Start of IIFE
   // Function to pull all Pokemon data
   function getAll() {
     return repository;
-  }
-
-  // Function to add list for each pokemon object
-  function addListItem(pokemon) {
-    const $listItem = $('<li></li>');
-    $pokemonList.append($listItem);
-    const $button = $(`<button type="button" id="pokemon-button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">${pokemon.name}</button>`);
-    $listItem.append($button);
-    $button.on('click', () => {
-      showDetails(pokemon);
-    });
   }
 
   // Function to load pokemon list from API
@@ -55,60 +44,53 @@ var pokemonRepository = (function () { // Start of IIFE
     });
   }
 
-  // Funtion to create modal
-  const modalContainer = $('#modal-container');
-  function showModal(title, text, image) {
-    modalContainer.addClass('is-visible');
-
-    // Clear all existing modal content
-    modalContainer.innerHTML = '';
-
-    const modal = $('<div class="modal"></div>');
-
-    // Add the new modal content: Name, height, and image
-    const closeButtonElement = $('<button class="modal-close btn-danger" id="closeButton">Close</button>');
-
-
-    const titleElement = $(`<h1>${title}</h1>`);
-
-    const contentElement = $(`<p> Height: ${text}</p>`);
-
-    const imageElement = $('<img class=myImage></img>').attr('src', image);
-
-    modalContainer.append(modal);
-    modal.append(closeButtonElement);
-    modal.append(titleElement);
-    modal.append(contentElement);
-    modal.append(imageElement);
-    closeButtonElement.click(hideModal);
-  }
-
-  function hideModal() {
-    modalContainer.removeClass('is-visible');
-    modalContainer.empty();
-  }
-
-  function showDetails(item) {
-    pokemonRepository.loadDetails(item).then(() => {
-      showModal(item.name, item.height, item.imageUrl);
-    });
-  }
-
   return {
     add,
     getAll,
-    addListItem,
-    showDetails,
     loadList,
     loadDetails,
-    showModal,
-    hideModal,
   };
 }());
 
+const $pokemonList = $('.pokemon-list');
+
+function addListItem(pokemon) {
+		    const listItem = $('<button type="button" class="pokemon-list_item list-group-item list-group-item-action" data-toggle="modal" data-target="#pokemon-modal"></button>');
+		    listItem.text(pokemon.name);
+  $pokemonList.append(listItem);
+		    listItem.click(() => {
+	 	      showDetails(pokemon);
+  });
+}
+
+
+function showDetails(item) {
+  pokemonRepository.loadDetails(item).then(() => {
+    // creates Modal
+    const modal = $('.modal-body');
+    const name = $('.modal-title').text(pokemon.name);
+    const height = $('<p class="pokemon-height"></p>').text(`Height: ${pokemon.height} Decimetres.`);
+    const weight = $('<p class="pokemon-weight"></p>').text(`Weight: ${pokemon.weight} Hectograms.`);
+    const type = $('<p class="pokemon-type"></p>').text(`Type: ${pokemon.types}.`);
+    const image = $('<img class="pokemon-picture">');
+    image.attr('src', pokemon.imageUrl);
+
+    if (modal.children().length) {
+      modal.children().remove();
+    }
+
+    modal.append(image)
+      .append(height)
+      .append(weight)
+      .append(type);
+  });
+}
+
 // Creates list of Pokemon with Pokemon's name on the button
 pokemonRepository.loadList().then(() => {
-  pokemonRepository.getAll().forEach((pokemon) => {
-    pokemonRepository.addListItem(pokemon);
+  const pokemons = pokemonRepository.getAll();
+
+  $.each(pokemons, (index, pokemon) => {
+    addListItem(pokemon);
   });
 });
