@@ -55,7 +55,7 @@ const pokemonRepository = (function () { // Start of IIFE
 const $pokemonList = $('.pokemon-list');
 
 function addListItem(pokemon) {
-		    const listItem = $('<button type="button" class="pokemon-list_item list-group-item list-group-item-action" data-toggle="modal" data-target="#pokemon-modal"></button>');
+		    const listItem = $('<button type="button" class="btn btn-primary list-group-item-action data-toggle="modal" data-target="#pokemon-modal"></button>');
 		    listItem.text(pokemon.name);
   $pokemonList.append(listItem);
 		    listItem.click(() => {
@@ -64,8 +64,8 @@ function addListItem(pokemon) {
 }
 
 
-function showDetails(item) {
-  pokemonRepository.loadDetails(item).then(() => {
+function showDetails(pokemon) {
+  pokemonRepository.loadDetails(pokemon).then(() => {
     // creates Modal
     const modal = $('.modal-body');
     const name = $('.modal-title').text(pokemon.name);
