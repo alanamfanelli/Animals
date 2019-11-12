@@ -77,6 +77,7 @@ function showDetails(pokemon) {
 
     if (modal.children().length) {
       modal.children().remove();
+      $('#pokemon-modal').modal('show');
     }
 
     modal.append(image)
