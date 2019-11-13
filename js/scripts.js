@@ -38,7 +38,6 @@ const pokemonRepository = (function () { // Start of IIFE
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.weight = details.weight;
-      item.types = Object.keys(details.types);
     }).catch((e) => {
       console.error(e);
     });
@@ -55,7 +54,7 @@ const pokemonRepository = (function () { // Start of IIFE
 const $pokemonList = $('.pokemon-list');
 
 function addListItem(pokemon) {
-		    const listItem = $('<button type="button" class="btn btn-primary list-group-item-action data-toggle="modal" data-target="#pokemon-modal"></button>');
+		    const listItem = $('<button type="button" class="btn-primary list-group-item-action data-toggle="modal" data-target="#pokemon-modal"></button>');
 		    listItem.text(pokemon.name);
   $pokemonList.append(listItem);
 		    listItem.click(() => {
@@ -71,7 +70,6 @@ function showDetails(pokemon) {
     const name = $('.modal-title').text(pokemon.name);
     const height = $('<p class="pokemon-height"></p>').text(`Height: ${pokemon.height} Decimetres.`);
     const weight = $('<p class="pokemon-weight"></p>').text(`Weight: ${pokemon.weight} Hectograms.`);
-    const type = $('<p class="pokemon-type"></p>').text(`Type: ${pokemon.types}.`);
     const image = $('<img class="pokemon-picture">');
     image.attr('src', pokemon.imageUrl);
 
