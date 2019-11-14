@@ -77,3 +77,6 @@ button:hover, button:focus {
   border-radius: 5px;
   margin-bottom: 0;
 }
+.search-btn {
+  margin-left: 1rem
+}

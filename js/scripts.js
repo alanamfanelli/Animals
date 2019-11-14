@@ -54,7 +54,7 @@ const pokemonRepository = (function () { // Start of IIFE
 const $pokemonList = $('.pokemon-list');
 
 function addListItem(pokemon) {
-		    const listItem = $('<button type="button" class="btn-primary list-group-item-action data-toggle="modal" data-target="#pokemon-modal"></button>');
+		    const listItem = $('<button type="button" class="btn-primary pokemon-list_item list-group-item-action data-toggle="modal" data-target="#pokemon-modal"></button>');
 		    listItem.text(pokemon.name);
   $pokemonList.append(listItem);
 		    listItem.click(() => {
@@ -84,6 +84,16 @@ function showDetails(pokemon) {
       .append(type);
   });
 }
+
+//Search pokemons
+  $(document).ready(function(){
+    $('#pokemon-search').on('keyup', function(){
+      var value = $(this).val().toLowerCase();
+      $('.pokemon-list_item').filter(function(){
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
 
 // Creates list of Pokemon with Pokemon's name on the button
 pokemonRepository.loadList().then(() => {
