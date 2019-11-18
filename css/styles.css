@@ -80,3 +80,6 @@ button:hover, button:focus {
 .search-btn {
   margin-left: 1rem
 }
+.list-group-item-action {
+  color: white;
+}

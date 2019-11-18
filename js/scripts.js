@@ -81,7 +81,6 @@ function showDetails(pokemon) {
     modal.append(image)
       .append(height)
       .append(weight)
-      .append(type);
   });
 }
 
