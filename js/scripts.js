@@ -73,10 +73,8 @@ function showDetails(pokemon) {
     const image = $('<img class="pokemon-picture">');
     image.attr('src', pokemon.imageUrl);
 
-    if (modal.children().length) {
-      modal.children().remove();
-      $('#pokemon-modal').modal('show');
-    }
+    modal.children().remove();
+    $('#pokemon-modal').modal('show');
 
     modal.append(image)
       .append(height)
